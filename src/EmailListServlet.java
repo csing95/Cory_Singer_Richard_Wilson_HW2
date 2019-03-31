@@ -25,6 +25,7 @@ public class EmailListServlet extends HttpServlet {
 
             User user = new User(firstName,lastName,email);
             UserDB.insert(user);
+            url = "/index.html";
         } else if (action.equals("delete")){
             String firstName = request.getParameter("firstName");
             String lastName = request.getParameter("lastName");
@@ -32,6 +33,7 @@ public class EmailListServlet extends HttpServlet {
 
             User user = new User(firstName,lastName,email);
             UserDB.delete(user);
+            url = "/index.html";
         } else if (action.equals("select")){
             String firstName = request.getParameter("firstName");
             String lastName = request.getParameter("lastName");
@@ -39,6 +41,7 @@ public class EmailListServlet extends HttpServlet {
 
             User user = new User(firstName,lastName,email);
             UserDB.select(user);
+            url = "/index.html";
         } else if (action.equals("update")){
             String firstName = request.getParameter("firstName");
             String lastName = request.getParameter("lastName");
@@ -47,8 +50,9 @@ public class EmailListServlet extends HttpServlet {
 
             User user = new User(firstName,lastName,email, id);
             UserDB.update(user);
+            url = "/index.html";
         }
-
+        getServletContext().getRequestDispatcher(url).forward(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

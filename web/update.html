@@ -2,13 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Delete</title>
-    <link rel="stylesheet" href="css/main.css">
+    <title>Update</title>
 </head>
 <body>
+<h1> Update Your Info</h1>
+<p>To update your information, enter your user ID in the field and then the info you wish to change.</p>
 <form action="emailList" method="post">
-    <input type="hidden" name="action" value="delete">
-    <h3>Please enter your email into the appropriate field.</h3>
+    <input type="hidden" name="action" value="update">
+
+    <label>Id: </label>
+    <input type="text" name="id" required><br>
 
     <label>Email: </label>
     <input type="email" name="email" required><br>
@@ -20,7 +23,7 @@
     <input type="text" name="lastName" required><br>
 
     <label>&nbsp</label>
-    <input type="submit" value="Delete" id="submit">
+    <input type="submit" value="Update Info" id="submit">
 
 </form>
 </body>

@@ -1,8 +1,4 @@
-import javax.swing.table.DefaultTableModel;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class UserDB {
 
@@ -60,9 +56,10 @@ public class UserDB {
         }
     }
 
-    public static int select(User user){
+    public static User select(User user){
         Connection conn;
         PreparedStatement ps = null; //Prepared statement is a way to protect from code injection
+        ResultSet rs = null;
         String selectQuery = "select * from email_user where email_user_email = ?";
 
         try {
@@ -71,16 +68,25 @@ public class UserDB {
 
             ps = conn.prepareStatement(selectQuery);
             ps.setString(1, user.getEmail());
-            return ps.executeUpdate();
+            rs =  ps.executeQuery();
+            if (rs.next()){
+                user = new User();
+                user.setFirstName(rs.getString("email_user_firstname"));
+                user.setLastName(rs.getString("email_user_lastname"));
+                user.setEmail(rs.getString("email_user_email"));
+                user.setId(rs.getString("idemail_user"));
+            }
+            return user;
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return 0;
+            return null;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-            return 0;
+            return null;
         } finally {
             DBUtil.closePreparedStatement(ps);
+            DBUtil.closeResultSet(rs);
         }
     }
 

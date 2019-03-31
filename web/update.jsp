@@ -18,6 +18,7 @@
 <html>
 <head>
     <title>Update</title>
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 <h1> Update Your Info</h1>
