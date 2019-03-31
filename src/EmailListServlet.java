@@ -32,6 +32,21 @@ public class EmailListServlet extends HttpServlet {
 
             User user = new User(firstName,lastName,email);
             UserDB.delete(user);
+        } else if (action.equals("select")){
+            String firstName = request.getParameter("firstName");
+            String lastName = request.getParameter("lastName");
+            String email = request.getParameter("email");
+
+            User user = new User(firstName,lastName,email);
+            UserDB.select(user);
+        } else if (action.equals("update")){
+            String firstName = request.getParameter("firstName");
+            String lastName = request.getParameter("lastName");
+            String email = request.getParameter("email");
+            String id = request.getParameter("id");
+
+            User user = new User(firstName,lastName,email, id);
+            UserDB.update(user);
         }
 
     }

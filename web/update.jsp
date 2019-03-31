@@ -13,17 +13,20 @@
 
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jstl/sql" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Update your info</title>
+    <title>Update</title>
 </head>
 <body>
+<h1> Update Your Info</h1>
+<p>To update your information, enter your user ID in the field and then the info you wish to change.</p>
 <form action="emailList" method="post">
     <input type="hidden" name="action" value="update">
 
     <label>Id: </label>
-    <input type="text" name="id"><br>
+    <input type="text" name="id" required><br>
 
     <label>Email: </label>
     <input type="email" name="email" required><br>
@@ -36,6 +39,33 @@
 
     <label>&nbsp</label>
     <input type="submit" value="Update Info" id="submit">
+
+    <%--<sql:setDataSource var = "myDS" driver = "com.mysql.jdbc.Driver"
+                       url = "jdbc:mysql://localhost:3306/email_list"
+                       user = "root"  password = "mysql"/>
+
+    <sql:query var = "result" dataSource = "${myDS}" >
+        SELECT * from email_user;
+    </sql:query>
+
+    <table border = "1" width = "100%">
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+        </tr>
+
+        <c:forEach var = "row" items = "${result.rows}">
+            <tr>
+                <td> <c:out value = "${row.idemail_user}"/></td>
+                <td> <c:out value = "${row.email_user_firstname}"/></td>
+                <td> <c:out value = "${row.email_user_lastname}"/></td>
+                <td> <c:out value = "${row.email_user_email}"/></td>
+            </tr>
+        </c:forEach>
+    </table>--%>
+
 </form>
 </body>
 </html>
