@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<h1>Unsubscribe from Email List</h1>
+<p>To unsubscribe from our email list, enter email address below and click Unsubscribe button</p>
+<form action="emailList" method="post">
+    <input type="hidden" name="action" value="delete">
+
+    <label>Enter user email: </label>
+    <input type="email" name="email" required><br>
+
+    <input type="submit" value="Unsubscribe from email list">
+</form>
+</body>
+</html>
