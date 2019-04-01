@@ -23,6 +23,14 @@
 <body>
 <h1> Update Your Info</h1>
 <p>To update your information, enter your user ID in the field and then the info you wish to change.</p>
+<p>If you are unsure what your id is, please press the Check Info button.</p>
+<form action="emailList" method="post">
+    <input type="hidden" name="action" value="select">
+
+    <input type="submit" value="Check Info">
+    <a href="index.html"><input type="button" value="Homepage"></a>
+
+</form>
 <form action="emailList" method="post">
     <input type="hidden" name="action" value="update">
 
@@ -41,31 +49,25 @@
     <label>&nbsp</label>
     <input type="submit" value="Update Info" id="submit">
 
-    <%--<sql:setDataSource var = "myDS" driver = "com.mysql.jdbc.Driver"
-                       url = "jdbc:mysql://localhost:3306/email_list"
-                       user = "root"  password = "mysql"/>
-
-    <sql:query var = "result" dataSource = "${myDS}" >
-        SELECT * from email_user;
-    </sql:query>
-
-    <table border = "1" width = "100%">
+    <table>
         <tr>
             <th>ID</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
-        </tr>
+            <th></th>
 
-        <c:forEach var = "row" items = "${result.rows}">
+        </tr>
+        <c:forEach var="user" items="${users}">
             <tr>
-                <td> <c:out value = "${row.idemail_user}"/></td>
-                <td> <c:out value = "${row.email_user_firstname}"/></td>
-                <td> <c:out value = "${row.email_user_lastname}"/></td>
-                <td> <c:out value = "${row.email_user_email}"/></td>
+                <td><input type="text" name="id"  readonly value="<c:out value="${user.id}"/>"></td>
+                <td><input type="text" name="firstname" readonly value="<c:out value="${user.firstName}"/>"></td>
+                <td><input type="text" name="lastname" readonly value="<c:out value="${user.lastName}"/>"></td>
+                <td><input type="text" name="email" readonly value="<c:out value="${user.email}"/>"></td>
             </tr>
+
         </c:forEach>
-    </table>--%>
+    </table>
 
 </form>
 </body>

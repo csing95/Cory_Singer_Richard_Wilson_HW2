@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet(name = "EmailListServlet")
 public class EmailListServlet extends HttpServlet {
@@ -39,9 +40,15 @@ public class EmailListServlet extends HttpServlet {
             String lastName = request.getParameter("lastName");
             String email = request.getParameter("email");
 
-            User user = new User(firstName,lastName,email);
-            UserDB.select(user);
-            url = "/index.html";
+            User u1 = new User(firstName,lastName,email);
+            UserDB.select(u1);
+
+//            ArrayList<User> users = UserDB.selectUsers();
+//            request.setAttribute("users",users);
+
+            url= "/update.jsp";
+
+            //url = "/index.html";
         } else if (action.equals("update")){
             String firstName = request.getParameter("firstName");
             String lastName = request.getParameter("lastName");
@@ -50,7 +57,7 @@ public class EmailListServlet extends HttpServlet {
 
             User user = new User(firstName,lastName,email, id);
             UserDB.update(user);
-            url = "/index.html";
+            url = "/update.jsp";
         }
         getServletContext().getRequestDispatcher(url).forward(request,response);
     }

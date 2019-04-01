@@ -57,4 +57,9 @@ public class User implements Serializable {
     public void setId(String id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName + ", your user id is " + id + ".";
+    }
 }
