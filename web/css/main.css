@@ -4,6 +4,13 @@ body{
     margin-left: 2em;
     margin-right: 2em;
 }
+#form1{
+    border-style: solid;
+    border-color: black;
+    border-width: 5px;
+    width: 300px;
+    text-align: center;
+}
 
 h1{
     color: red;

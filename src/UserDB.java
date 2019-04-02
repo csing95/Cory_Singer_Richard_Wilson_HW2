@@ -1,5 +1,6 @@
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserDB {
 
@@ -58,7 +59,7 @@ public class UserDB {
     }
 
 
-    public static ArrayList<User> selectUsers() {
+    public static ArrayList<User> selectUsers(User u1) {
 
         Connection conn;
         PreparedStatement ps = null;
@@ -73,6 +74,8 @@ public class UserDB {
                 ps = conn.prepareStatement(selectAll);
                 //User u1 = new User();
                 //ps.setString(1, u1.getEmail());
+                String queryEmail = u1.getEmail();
+                //System.out.println("Your email is " + queryEmail);
                 rs = ps.executeQuery();
 
                 while (rs.next()){
@@ -84,7 +87,16 @@ public class UserDB {
                     users.add(user);
                 }
 
-                return users;
+                ArrayList<User> singleUser = new ArrayList<>();
+
+                for (int i = 0; i < users.size(); i++){
+                    if (queryEmail.equals(users.get(i).getEmail())){
+                        singleUser.add(users.get(i));
+                        System.out.println(queryEmail + " : They matched");
+                    }
+                }
+                return singleUser;
+
             } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
                 return null;
@@ -126,11 +138,11 @@ public class UserDB {
         }
     }
 
-    public static int select(User user){
+    public static boolean doesEmailExist(User user){
         Connection conn;
 
         PreparedStatement ps = null; //Prepared statement is a way to protect from code injection
-        String selectQuery = "select idemail_user from email_user where email_user_email = ?";
+        String selectQuery = "select email_user_email from email_user where email_user_email = ?";
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -138,16 +150,14 @@ public class UserDB {
 
             ps = conn.prepareStatement(selectQuery);
             ps.setString(1, user.getEmail());
-            System.out.println("This is the user ID"+user.getId());
-            System.out.println("This is the user ID"+user.getEmail());
-            return ps.executeUpdate();
+            return ps.execute();
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return 0;
+            return false;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-            return 0;
+            return false;
         } finally {
             DBUtil.closePreparedStatement(ps);
         }

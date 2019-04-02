@@ -24,15 +24,12 @@
 <h1> Update Your Info</h1>
 <p>To update your information, enter your user ID in the field and then the info you wish to change.</p>
 <p>If you are unsure what your id is, please press the Check Info button.</p>
-<form action="emailList" method="post">
-    <input type="hidden" name="action" value="select">
 
-    <input type="submit" value="Check Info">
-    <a href="index.html"><input type="button" value="Homepage"></a>
-
-</form>
 <form action="emailList" method="post">
     <input type="hidden" name="action" value="update">
+
+    <a href="select.html"><input type="button" value="Look up ID"></a>
+    <a href="index.html"><input type="button" value="Homepage"></a><br>
 
     <label>Id: </label>
     <input type="text" name="id" required><br>

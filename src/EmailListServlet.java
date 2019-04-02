@@ -25,7 +25,13 @@ public class EmailListServlet extends HttpServlet {
             String email = request.getParameter("email");
 
             User user = new User(firstName,lastName,email);
-            UserDB.insert(user);
+            UserDB.doesEmailExist(user);
+            if (false) {
+                UserDB.insert(user);
+            } else {
+                //input an alert here
+                System.out.println("email already taken");
+            }
             url = "/index.html";
         } else if (action.equals("delete")){
             String firstName = request.getParameter("firstName");
@@ -41,14 +47,13 @@ public class EmailListServlet extends HttpServlet {
             String email = request.getParameter("email");
 
             User u1 = new User(firstName,lastName,email);
-            UserDB.select(u1);
+            UserDB.selectUsers(u1);
 
-//            ArrayList<User> users = UserDB.selectUsers();
-//            request.setAttribute("users",users);
+            ArrayList<User> users = UserDB.selectUsers(u1);
+            request.setAttribute("users",users);
 
             url= "/update.jsp";
 
-            //url = "/index.html";
         } else if (action.equals("update")){
             String firstName = request.getParameter("firstName");
             String lastName = request.getParameter("lastName");

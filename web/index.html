@@ -9,7 +9,7 @@
 
 <h1> Join our email list</h1>
 <p>To join our email list, enter your name and email below</p>
-<form action="emailList" method="post">
+<form action="emailList" method="post" id="form1">
     <input type="hidden" name="action" value="add">
 
     <label>Email: </label>
@@ -23,8 +23,9 @@
 
     <label>&nbsp</label>
     <input type="submit" value="Join now" id="submit">
-    <a href="delete.html"><input type="button" value="Unsubscribe"></a>
-    <a href="update.jsp"><input type="button" value="Update/Select"></a>
+    <a href="delete.html"><input type="button" value="Unsubscribe"></a> <br>
+    <label>&nbsp</label> <a href="update.jsp"><input type="button" value="Update"></a>
+    <a href="select.html"><input type="button" value="Check Info"></a>
 </form>
 
 </body>
