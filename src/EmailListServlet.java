@@ -31,6 +31,7 @@ public class EmailListServlet extends HttpServlet {
             } else {
                 //input an alert here
                 System.out.println("email already taken");
+                
             }
             url = "/index.html";
         } else if (action.equals("delete")){
